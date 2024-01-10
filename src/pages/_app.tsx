@@ -6,7 +6,7 @@ import type { AppProps } from "next/app";
 import NextHead from "next/head";
 import * as React from "react";
 import { WagmiConfig, configureChains, createConfig } from "wagmi";
-import { goerli, mainnet } from "wagmi/chains";
+import { goerli, mainnet, sepolia, polygonMumbai } from "wagmi/chains";
 import {
 	GoogleSocialWalletConnector,
 	FacebookSocialWalletConnector,
@@ -19,7 +19,7 @@ import {
 import { publicProvider } from "wagmi/providers/public";
 
 export const { chains, publicClient, webSocketPublicClient } = configureChains(
-	[mainnet, ...(process.env.NODE_ENV === "development" ? [goerli] : [])],
+	[mainnet, ...(process.env.NODE_ENV === "development" ? [polygonMumbai] : [])],
 	[publicProvider()]
 );
 
@@ -29,7 +29,7 @@ function App({ Component, pageProps }: AppProps) {
 			const options = {
 				chains,
 				options: {
-					projectId: "ef3522fe-b6d7-4d79-abe0-2529274958d8",
+					projectId: "f1d2d8bf-0feb-430a-9f6f-dfeb8bc639a3",
 					shimDisconnect: true,
 				},
 			};
