@@ -6,6 +6,8 @@ import {
 	useSendUserOperation,
 } from "@zerodev/wagmi";
 import { useWaitForTransaction } from "wagmi";
+//next
+import Link from 'next/link'
 
 export function Account() {
 	const { address } = useAccount()
@@ -46,6 +48,8 @@ export function Account() {
 			{ensName ?? address}
 			{ensName ? ` (${address})` : null}
 			<button onClick={() => sendTx()}>Send</button>
+			<Link href="/login">Login</Link>
+
 		</div>
 	);
 }
