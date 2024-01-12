@@ -2,7 +2,12 @@
 //github.com/orgs/zerodevapp/repositories
 //github.com/zerodevapp/zerodev-privy-nextjs-example
 //css
+
 'use client';
+
+import { Providers } from '../GlobalRedux/provider'
+
+
 import '../globals.css'
 
 import type { AppProps } from "next/app";
@@ -59,13 +64,15 @@ function App({ Component, pageProps }: AppProps) {
 
 	return (
 
-		<WagmiConfig config={config!}>
-			<NextHead>
-				<title>wagmi</title>
-			</NextHead>
+		<Providers>
+			<WagmiConfig config={config!}>
+				<NextHead>
+					<title>wagmi</title>
+				</NextHead>
 
-			{mounted && <Component {...pageProps} />}
-		</WagmiConfig>
+				{mounted && <Component {...pageProps} />}
+			</WagmiConfig>
+		</Providers>
 
 
 	);
