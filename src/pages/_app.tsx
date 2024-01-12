@@ -1,6 +1,9 @@
 //dashboard.zerodev.app/
 //github.com/orgs/zerodevapp/repositories
 //github.com/zerodevapp/zerodev-privy-nextjs-example
+//css
+'use client';
+import '../globals.css'
 
 import type { AppProps } from "next/app";
 import NextHead from "next/head";
@@ -17,6 +20,7 @@ import {
 } from "@zerodev/wagmi";
 
 import { publicProvider } from "wagmi/providers/public";
+import Layout from '../components/Layout';
 
 export const { chains, publicClient, webSocketPublicClient } = configureChains(
 	[mainnet, ...(process.env.NODE_ENV === "development" ? [polygonMumbai] : [])],
@@ -54,6 +58,7 @@ function App({ Component, pageProps }: AppProps) {
 	if (typeof window === "undefined") return null;
 
 	return (
+
 		<WagmiConfig config={config!}>
 			<NextHead>
 				<title>wagmi</title>
@@ -61,6 +66,8 @@ function App({ Component, pageProps }: AppProps) {
 
 			{mounted && <Component {...pageProps} />}
 		</WagmiConfig>
+
+
 	);
 }
 
