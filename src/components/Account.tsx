@@ -1,4 +1,4 @@
-import { useAccount, useEnsName } from 'wagmi'
+import { useAccount, useEnsName, useBalance } from 'wagmi'
 
 import { parseEther } from "viem";
 import {
@@ -39,13 +39,17 @@ export function Account() {
 		}
 	};
 
-
+	const result = useBalance({
+		address: address,
+	});
+	console.log(result)
 
 	return (
-		<div className=''>
+		<div className='grid '>
 			{ensName ?? address}
 			{ensName ? ` (${address})` : null}
 			<button onClick={() => sendTx()}>Send</button>
+			{result?.data?.formatted }
 		</div>
 	);
 }
