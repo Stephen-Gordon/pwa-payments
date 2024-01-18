@@ -46,11 +46,11 @@ function App({ Component, pageProps }: AppProps) {
 				autoConnect: true,
 				connectors: [
 					new GoogleSocialWalletConnector(options),
-					new FacebookSocialWalletConnector(options),
+					/* new FacebookSocialWalletConnector(options),
 					new GithubSocialWalletConnector(options),
 					new DiscordSocialWalletConnector(options),
 					new TwitchSocialWalletConnector(options),
-					new TwitterSocialWalletConnector(options),
+					new TwitterSocialWalletConnector(options), */
 				],
 				publicClient,
 				webSocketPublicClient,

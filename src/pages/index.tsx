@@ -8,7 +8,7 @@ function Page() {
   return (
     <>
       <div className='bg-[#2b2b2b] w-screen h-screen text-white'>
-        <h1 className='text-3xl font-bold underline'>wagmi + Next.js</h1>
+      {/*   <h1 className='text-3xl font-bold underline'>wagmi + Next.js</h1> */}
 
         <Connect />
 
