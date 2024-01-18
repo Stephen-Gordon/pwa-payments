@@ -42,7 +42,7 @@ export function Account() {
 
 
 	return (
-		<div className='bg-black'>
+		<div className=''>
 			{ensName ?? address}
 			{ensName ? ` (${address})` : null}
 			<button onClick={() => sendTx()}>Send</button>

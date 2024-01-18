@@ -36,7 +36,11 @@ export function Connect() {
   }
   useEffect(() => {
     console.log('loginState', loginState)
-  }, [loginState])
+    if(isConnected){
+      dispatch(login())
+      Router.push('/home')
+    }
+  }, [loginState, isConnected])
 
   return (
 		<div>
@@ -57,7 +61,10 @@ export function Connect() {
 									key={x.id}
 									onClick={() => {
 										connect({ connector: x });
-										handleConnect();
+                    if(isConnected) {
+                      console.log('isConnected', isConnected)
+                    }
+										
 									}}
 									type="button"
 									className="text-white w-full  bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center justify-between dark:focus:ring-[#4285F4]/55 mr-2 mb-2"
