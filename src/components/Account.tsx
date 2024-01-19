@@ -39,17 +39,14 @@ export function Account() {
 		}
 	};
 
-	const result = useBalance({
-		address: address,
-	});
-	console.log(result)
+	
 
 	return (
 		<div className='grid '>
 			{ensName ?? address}
 			{ensName ? ` (${address})` : null}
 			<button onClick={() => sendTx()}>Send</button>
-			{result?.data?.formatted }
+			
 		</div>
 	);
 }
