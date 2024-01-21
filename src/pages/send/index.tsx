@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { Alchemy, Network } from "alchemy-sdk";
 
 import { useAccount } from "wagmi";
+import SendUsdc from "../../components/SendUsdc/SendUsdc";
 
 
 const config = {
@@ -16,15 +17,18 @@ const alchemy = new Alchemy(config);
 export default function Page() {
 
 	const { address } = useAccount();
+	console.log(process.env.NEXT_PUBLIC_ALCHEMY_API_KEY);
 
 	const getData = async () => {
 		const data = await alchemy.core.getAssetTransfers({
 			fromBlock: "0x0",
 			fromAddress: address,
-			category: ["internal"],
+			category: ["erc20", "internal", "erc721"],
 		});
 		console.log(data);
 	}
+
+
 	
 
 
@@ -36,6 +40,10 @@ export default function Page() {
 				<h1>Send Page</h1>
 				<p>Route address: {address}</p>
 				<button onClick={getData} >get data</button>
+
+				<div className="mt-20">
+					<SendUsdc/>
+				</div>
 			</>
 		);
 }
