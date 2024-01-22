@@ -1,5 +1,4 @@
 import { useContractWrite, usePrepareContractWrite, erc20ABI } from 'wagmi'
-
 import { useContractBatchWrite, usePrepareContractBatchWrite } from '@zerodev/wagmi';
 import { parseEther, parseUnits } from "viem";
 
@@ -9,7 +8,7 @@ import { useWaitForTransaction } from "wagmi";
 
 export default function SendUsdc() {
 
-	const usdc = "0x38EB8B22Df3Ae7fb21e92881151B365Df14ba967"
+	const usdc = "0x9999f7Fea5938fD3b1E26A12c3f2fb024e194f97"
 
 	const { config } = usePrepareContractBatchWrite({
 		calls: [
@@ -60,7 +59,7 @@ export default function SendUsdc() {
 		}
 	}
 
-
+	console.log(erc20ABI)
 	return (
 		<div>
 			<button
