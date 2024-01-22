@@ -1,4 +1,15 @@
-module.exports = {
-  reactStrictMode: true,
-  transpilePackages: ["@zerodev"],
+/** @type {import('next').NextConfig} */
+
+
+const withPWA = require("next-pwa")({
+	dest: "public",
+	register: true,
+	skipWaiting: true,
+});
+const nextConfig = {
+	reactStrictMode: true,
+	transpilePackages: ["@zerodev"],
+	swcMinify: false,
 };
+
+module.exports = withPWA(nextConfig);

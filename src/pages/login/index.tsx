@@ -4,6 +4,9 @@ import { login, logout } from '../../GlobalRedux/Features/login/loginSlice'
 import { RootState } from '../../GlobalRedux/store'
 import { useEffect } from 'react'
 
+import { Connect } from "../../components";
+
+
 export default function Login() {
 
 
@@ -20,12 +23,11 @@ export default function Login() {
     }, [loginState])
 
     return (
-        <div>
-            <h1>Login</h1>
+			<div>
+				<h1>Login</h1>
+				<Connect />
 
-            {loginState && (
-                <p>logged in</p>
-            )}
-        </div>
-    )
+				{loginState && <p>logged in</p>}
+			</div>
+		);
 }

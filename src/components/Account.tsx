@@ -1,4 +1,4 @@
-import { useAccount, useEnsName } from 'wagmi'
+import { useAccount, useEnsName, useBalance } from 'wagmi'
 
 import { parseEther } from "viem";
 import {
@@ -44,11 +44,10 @@ export function Account() {
 
 
 	return (
-		<div className='bg-black'>
+		<div className='grid '>
 			{ensName ?? address}
 			{ensName ? ` (${address})` : null}
 			<button onClick={() => sendTx()}>Send</button>
-			<Link href="/login">Login</Link>
 
 		</div>
 	);
