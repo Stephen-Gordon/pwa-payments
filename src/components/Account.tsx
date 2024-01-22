@@ -16,7 +16,7 @@ export function Account() {
 	const { config } = usePrepareSendUserOperation({
 		to: "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
 		data: "0x",
-		value: parseEther("0.03"),
+		value: parseEther("0.01"),
 
 	});
 	const { sendUserOperation, data } = useSendUserOperation(config);
@@ -34,7 +34,10 @@ export function Account() {
 			// Send the tx
 			if (sendUserOperation) {
 				console.log("true")
+				console.log(data, sendUserOperation)
 				sendUserOperation()
+				console.log(data, sendUserOperation)
+
 			}
 		} catch (error) {
 			console.log(error)
@@ -47,7 +50,7 @@ export function Account() {
 		<div className='grid '>
 			{ensName ?? address}
 			{ensName ? ` (${address})` : null}
-			<button onClick={() => sendTx()}>Send</button>
+			<button onClick={() => sendTx()}>Send tx</button>
 
 		</div>
 	);

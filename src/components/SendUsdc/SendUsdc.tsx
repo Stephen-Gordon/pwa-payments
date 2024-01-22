@@ -1,47 +1,74 @@
 import { useContractWrite, usePrepareContractWrite, erc20ABI } from 'wagmi'
-import { parseEther } from "viem";
 
-export default function SendUsdc () {
-	const { config } = usePrepareContractWrite({
-		//usdc
-		address: "0x0FA8781a83E46826621b3BC094Ea2A0212e71B23",
-		abi: erc20ABI,
-		functionName: "transfer",
-		args: ["0xc8C26Ab40fe4723519fE66B8dBb625FC070A982c", parseEther("0.03")],
-	});
+import { useContractBatchWrite, usePrepareContractBatchWrite } from '@zerodev/wagmi';
+import { parseEther, parseUnits } from "viem";
 
-	// get the transfer function
-	const { data, isLoading, isSuccess, write } = useContractWrite(config);
+import { usePrepareSendUserOperation, useSendUserOperation } from "@zerodev/wagmi";
+import { useWaitForTransaction } from "wagmi";
 
-	if (isLoading) {
-		return <p>Waiting for confirmations on your wallet...</p>;
+
+export default function SendUsdc() {
+
+	const usdc = "0x38EB8B22Df3Ae7fb21e92881151B365Df14ba967"
+
+	const { config } = usePrepareContractBatchWrite({
+		calls: [
+			{
+				address: usdc,
+				abi: erc20ABI,
+				functionName: "approve",
+				args: ['0xc8C26Ab40fe4723519fE66B8dBb625FC070A982c', parseUnits('100', 6)],
+			}, {
+				address: usdc,
+				abi: erc20ABI,
+				functionName: "transfer",
+				args: ['0xc8C26Ab40fe4723519fE66B8dBb625FC070A982c', parseUnits('100', 6)]
+			}
+		],
+		enabled: true
+	})
+
+	const { sendUserOperation: batchSend, isLoading, data } = useContractBatchWrite(config)
+
+	useWaitForTransaction({
+		hash: data ? data.hash : undefined,
+		enabled: !!data,
+		onSuccess() {
+			console.log("Transaction was successful.")
+		},
+		onError() {
+			alert("Transaction was unsuccessful.")
+		}
+	})
+
+	// write contract
+
+	const sendUsdc = async () => {
+		try {
+			// Send the tx
+			if (batchSend) {
+				console.log("sending")
+				console.log("sending")
+				console.log(data, batchSend)
+				batchSend()
+				console.log("sent")
+			} else {
+				console.log("not sending")
+			}
+		} catch (error) {
+			console.log(error)
+		}
 	}
 
-	if (isSuccess) {
-		return <p>Transaction was sent! Waiting for it to complete</p>;
-	}
 
-	const { config: configWrite } = usePrepareContractWrite({
-		address: "0x0FA8781a83E46826621b3BC094Ea2A0212e71B23", //Goerli USDC contract address
-		abi: erc20ABI, //Standard ERC-20 ABI https://www.quicknode.com/guides/smart-contract-development/what-is-an-abi
-		functionName: "transfer", //We're going to use the tranfer method provided in the ABI, here's an example of a standard transfer method https://docs.ethers.io/v5/single-page/#/v5/api/contract/example/
-		args: ["0xc8C26Ab40fe4723519fE66B8dBb625FC070A982c", parseEther("0.03")], //[receiver, amount] Note that the units to parse are six because that's the number of decimals set for USDC in its contract. In order to add another token with a different amount of decimals its necessary to add additional logic here for it to work.
-	});
-	const { data: dataWrite, write } = useContractWrite(configWrite);
-
-	//https://wagmi.sh/docs/hooks/useSendTransaction
-	const { data, sendTransaction } = useSendTransaction(config);
-
-	//Wait for payment to be completed https://wagmi.sh/docs/hooks/useWaitForTransaction
-	const { isLoading, isSuccess } = useWaitForTransaction({
-		hash: data?.hash || dataWrite?.hash, //transaction hash
-	});
 	return (
 		<div>
 			<button
-				disabled={isLoading || isSuccess}
-				onClick={sendTransaction}
-			></button>
+				onClick={() => sendUsdc()}
+			>Send USDC</button>
+			<div className='mt-5'>
+				{isLoading ? 'loading...' : 'Batch Example'}
+			</div>
 		</div>
 	);
 }

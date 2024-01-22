@@ -63,7 +63,7 @@ function App({ Component, pageProps }: AppProps) {
 	const [mounted, setMounted] = React.useState(false);
 	React.useEffect(() => {
 		setMounted(true);
-				
+
 	}, []);
 	if (typeof window === "undefined") return null;
 
