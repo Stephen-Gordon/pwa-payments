@@ -1,7 +1,6 @@
 import { useContractWrite, usePrepareContractWrite, erc20ABI } from 'wagmi'
 import { parseEther } from "viem";
 
-
 export default function SendUsdc () {
 	const { config } = usePrepareContractWrite({
 		//usdc
