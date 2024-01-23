@@ -4,6 +4,7 @@ import { Alchemy, Network } from "alchemy-sdk";
 
 import { useAccount } from "wagmi";
 import SendUsdc from "../../components/SendUsdc/SendUsdc";
+import { useState } from "react";
 
 
 const config = {
@@ -17,7 +18,8 @@ const alchemy = new Alchemy(config);
 export default function Page() {
 
 	const { address } = useAccount();
-	console.log(process.env.NEXT_PUBLIC_ALCHEMY_API_KEY);
+
+	const [payee, setPayee] = useState("");
 
 	const getData = async () => {
 		const data = await alchemy.core.getAssetTransfers({
@@ -29,20 +31,21 @@ export default function Page() {
 	}
 
 
+
+
 	
 
 
     const router = useRouter();
-		//const { address } = router.query;
 
     return (
 			<>
 				<h1>Send Page</h1>
 				<p>Route address: {address}</p>
 				<button onClick={getData} >get data</button>
-
+				
 				<div className="mt-20">
-					<SendUsdc/>
+					<SendUsdc payee={payee}/>
 				</div>
 			</>
 		);
