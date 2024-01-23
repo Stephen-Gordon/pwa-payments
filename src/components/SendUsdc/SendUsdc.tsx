@@ -5,9 +5,14 @@ import { erc20ABI, useWaitForTransaction } from "wagmi";
 import { usePrepareSendUserOperation, useSendUserOperation } from "@zerodev/wagmi";
 
 // Viem
-import { Address, encodeFunctionData, parseUnits } from "viem";
+import { encodeFunctionData, parseUnits } from "viem";
+import { useRouter } from "next/router";
 
-export default function SendUsdc({ payee }: { payee: Address }) {
+export default function SendUsdc() {
+
+	const router = useRouter();
+
+	const { payee } = router.query;
 
 	// USDC contract address
 	const usdc = "0x9999f7Fea5938fD3b1E26A12c3f2fb024e194f97";
@@ -52,7 +57,7 @@ export default function SendUsdc({ payee }: { payee: Address }) {
 			className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
 			onClick={() => sendTx()}
 		>
-			Send USDC
+			Send USDC to { payee }
 		</button>
 	);
 }
