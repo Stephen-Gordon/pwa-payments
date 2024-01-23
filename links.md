@@ -22,3 +22,6 @@ https://viem.sh/docs/contract/encodeFunctionData.html
 
 ZeroDev Docs
 https://docs.zerodev.app/use-wallets/send-transactions#wagmi-api
+
+Blog
+https://www.0xdev.co/how-to-send-erc-20-tokens-to-another-address-in-react-with-wagmi/
