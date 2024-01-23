@@ -17,6 +17,7 @@ export function Account() {
 		to: "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
 		data: "0x",
 		value: parseEther("0.01"),
+		
 
 	});
 	const { sendUserOperation, data } = useSendUserOperation(config);
@@ -28,6 +29,8 @@ export function Account() {
 			console.log("Transaction was successful.");
 		},
 	});
+
+	
 
 	const sendTx = async () => {
 		try {
