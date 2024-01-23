@@ -8,18 +8,27 @@ export default function Page () {
 				<div className="text-5xl text-center items-center mt-60">
 					<Balance />
 				</div>
-				<Link href="/send?address=12345" passHref>
-					go
-				</Link>
+
 				<Link
 					href={{
 						pathname: "/send",
 						query: { address: "12345" },
 					}}
 				>
-					Go to send button
+					<button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+						Go to send Usdc
+					</button>
 				</Link>
-				<Send />
+				<Link
+					href={{
+						pathname: "/search",
+					}}
+				>
+					<button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+						Search Address
+					</button>
+				</Link>
+				{/* <Send /> */}
 				<Account />
 				<Connect />
 			</div>
