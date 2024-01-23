@@ -14,4 +14,11 @@ https://www.youtube.com/watch?v=dZXOlmNsd7o
 ---
 
 # Send ERC20 Token
-//https://dev.to/ephcrat/build-a-web3-payments-interface-with-react-ethersjs-rainbowkit-chakra-ui-3khi
+Blog
+https://dev.to/ephcrat/build-a-web3-payments-interface-with-react-ethersjs-rainbowkit-chakra-ui-3khi
+
+Viem
+https://viem.sh/docs/contract/encodeFunctionData.html
+
+ZeroDev Docs
+https://docs.zerodev.app/use-wallets/send-transactions#wagmi-api
