@@ -36,10 +36,7 @@ export function Account() {
 		try {
 			// Send the tx
 			if (sendUserOperation) {
-				console.log("true")
-				console.log(data, sendUserOperation)
 				sendUserOperation()
-				console.log(data, sendUserOperation)
 
 			}
 		} catch (error) {
@@ -53,7 +50,7 @@ export function Account() {
 		<div className='grid '>
 			{ensName ?? address}
 			{ensName ? ` (${address})` : null}
-			<button onClick={() => sendTx()}>Send tx</button>
+			<button onClick={() => sendTx()}>Send Matic</button>
 
 		</div>
 	);
