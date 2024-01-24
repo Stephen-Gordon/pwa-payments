@@ -18,6 +18,7 @@ import * as React from "react";
 import { WagmiConfig, configureChains, createConfig } from "wagmi";
 import { goerli, mainnet, sepolia, polygonMumbai } from "wagmi/chains";
 import {
+	
 	GoogleSocialWalletConnector,
 	FacebookSocialWalletConnector,
 	GithubSocialWalletConnector,
